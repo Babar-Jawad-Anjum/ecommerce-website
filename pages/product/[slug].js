@@ -19,7 +19,7 @@ const Post = ({ buyNow, addToCart, product }) => {
   };
 
   const checkServiceability = async () => {
-    let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
+    let pins = await fetch(`http://localhost:3000/api/pincode`);
     let pin_JSON = await pins.json();
     if (pin_JSON.includes(parseInt(pin))) {
       setService(true);
