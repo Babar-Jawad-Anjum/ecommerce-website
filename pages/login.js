@@ -11,7 +11,7 @@ const Login = () => {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      router.push(process.env.NEXT_PUBLIC_HOST);
+      router.push("/");
     }
   }, []);
 
@@ -54,7 +54,7 @@ const Login = () => {
         theme: "light",
       });
       setTimeout(() => {
-        router.push(process.env.NEXT_PUBLIC_HOST);
+        router.push("/");
       }, 1500);
     } else {
       toast.error(response.error, {

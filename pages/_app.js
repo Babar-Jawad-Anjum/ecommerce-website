@@ -84,7 +84,7 @@ export default function App({ Component, pageProps }) {
     localStorage.removeItem("token");
     setUser({ value: null });
     setKey(Math.random()); //so that navbar can re render and show updates
-    router.push(process.env.NEXT_PUBLIC_HOST);
+    router.push("/");
   };
 
   return (
