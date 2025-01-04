@@ -28,6 +28,7 @@ const Login = () => {
     const data = { email, password };
     let res = await fetch(
       "https://aesthetic-brioche-06e2b8.netlify.app/api/login",
+      // "/api/login",
       {
         method: "POST", // or 'PUT'
         headers: {
@@ -37,6 +38,10 @@ const Login = () => {
       }
     );
     let response = await res.json();
+
+    console.log("--------response");
+    console.log(response);
+
     setEmail("");
     setPassword("");
     if (response.success) {

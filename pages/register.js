@@ -29,30 +29,53 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { name, email, password };
-    let res = await fetch(
-      "https://aesthetic-brioche-06e2b8.netlify.app/api/signup",
-      {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+
+    try {
+      let res = await fetch(
+        // "/api/signup",
+        "https://aesthetic-brioche-06e2b8.netlify.app/api/signup",
+        {
+          method: "POST", // or 'PUT'
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      let response = await res.json();
+
+      if (res.ok) {
+        setName("");
+        setEmail("");
+        setPassword("");
+        toast.success("Your account has been created!", {
+          position: "bottom-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setTimeout(() => {
+          router.push("/login");
+        }, 2000);
+      } else {
+        toast.error(response.error, {
+          position: "bottom-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
-    );
-    // let response = await res.json();
-    setName("");
-    setEmail("");
-    setPassword("");
-    toast.success("Your account has been created!", {
-      position: "bottom-center",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

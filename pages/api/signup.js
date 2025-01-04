@@ -15,10 +15,22 @@ const handler = async (req, res) => {
 
   if (req.method == "POST") {
     let { name, email, password } = req.body;
+
+    // Check if a user with the same name or email already exists
+    let existingUser = await User.findOne({ $or: [{ name }, { email }] });
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ error: "User with the same name or email already exists" });
+    }
+
+    // Encrypt the password
     let hashedPassword = CryptoJS.AES.encrypt(
       password,
       "secret-key-123"
     ).toString();
+
+    // Create a new user
     let u = new User({ name, email, password: hashedPassword });
     await u.save();
 

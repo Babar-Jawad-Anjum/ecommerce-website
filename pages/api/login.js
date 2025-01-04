@@ -36,7 +36,7 @@ const handler = async (req, res) => {
           .json({ success: false, error: "Wrong Credentials!" });
       }
     } else {
-      return res.status(200).json({ success: false, error: "User not found" });
+      return res.status(400).json({ success: false, error: "User not found" });
     }
   } else {
     res.status(400).json({ error: "This method is not allowed" });
