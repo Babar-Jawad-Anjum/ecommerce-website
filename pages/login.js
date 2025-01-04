@@ -39,9 +39,6 @@ const Login = () => {
     );
     let response = await res.json();
 
-    console.log("--------response");
-    console.log(response);
-
     setEmail("");
     setPassword("");
     if (response.success) {
