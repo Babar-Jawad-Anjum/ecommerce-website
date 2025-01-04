@@ -19,7 +19,9 @@ const Post = ({ buyNow, addToCart, product }) => {
   };
 
   const checkServiceability = async () => {
-    let pins = await fetch(`http://localhost:3000/api/pincode`);
+    let pins = await fetch(
+      `https://aesthetic-brioche-06e2b8.netlify.app/api/pincode`
+    );
     let pin_JSON = await pins.json();
     if (pin_JSON.includes(parseInt(pin))) {
       setService(true);

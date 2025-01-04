@@ -26,13 +26,16 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { email, password };
-    let res = await fetch("http://localhost:3000/api/login", {
-      method: "POST", // or 'PUT'
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    let res = await fetch(
+      "https://aesthetic-brioche-06e2b8.netlify.app/api/login",
+      {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
     let response = await res.json();
     setEmail("");
     setPassword("");
